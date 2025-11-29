@@ -1,6 +1,10 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { AppLayout } from './components/layout/AppLayout';
+// src/App.tsx
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 import { LandingPage } from './pages/LandingPage';
+import { LoginPage } from './pages/LoginPage';
+
+import { AppLayout } from './components/layout/AppLayout';
 import { DashboardPage } from './pages/DashboardPage';
 import { PersonaStudioPage } from './pages/PersonaStudioPage';
 import { AgentChatPage } from './pages/AgentChatPage';
@@ -12,16 +16,19 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Public pages */}
         <Route path="/" element={<LandingPage />} />
-        <Route element={<AppLayout />}>
-          <Route path="/app" element={<DashboardPage />} />
-          <Route path="/personas" element={<PersonaStudioPage />} />
-          <Route path="/chat" element={<AgentChatPage />} />
-          <Route path="/proofs" element={<ProofCenterPage />} />
-          <Route path="/activity" element={<ActivityLogPage />} />
-          <Route path="/settings" element={<SettingsPage />} />
+        <Route path="/login" element={<LoginPage />} />
+
+        {/* Authenticated app shell */}
+        <Route path="/app" element={<AppLayout />}>
+          <Route index element={<DashboardPage />} />
+          <Route path="personas" element={<PersonaStudioPage />} />
+          <Route path="chat" element={<AgentChatPage />} />
+          <Route path="proofs" element={<ProofCenterPage />} />
+          <Route path="activity" element={<ActivityLogPage />} />
+          <Route path="settings" element={<SettingsPage />} />
         </Route>
-        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
   );

@@ -37,7 +37,9 @@ export interface WalletState {
 export interface IdentityState {
   did?: string;
   hasAgent: boolean;
+  authToken?: string; // NEW: DID-based login token
 }
+
 
 export interface ActivityItem {
   id: string;
@@ -51,4 +53,9 @@ export interface AppSettings {
   defaultExpiration: "10min" | "1hour" | "1day";
   allowAutoSwitch: boolean;
   allowAutoProofs: boolean;
+}
+
+export interface AuthSession {
+  did: string;
+  token: string; // backend session token (e.g. JWT)
 }
