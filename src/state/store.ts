@@ -9,6 +9,7 @@ import type {
   AppSettings,
 } from '../types';
 
+
 interface AppState {
   wallet: WalletState;
   identity: IdentityState;
